@@ -4,6 +4,7 @@ use App\Http\Controllers\ConsoleController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -13,8 +14,12 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::prefix('admin')->middleware('admin')->group(function () {
 
+        // endpoint untuk melihat semua user
+        Route::get("/getallusers", [UserController::class, 'users']);
+
         // endpoint CRUD consoles
         Route::get('/getallconsoles', [ConsoleController::class, 'index']);
+        Route::get('/getallconsoles/{console}', [ConsoleController::class, 'show']);
         Route::post('/addconsoles', [ConsoleController::class, 'store']);
         Route::put('/updateconsoles/{console}', [ConsoleController::class, 'update']);
         Route::delete('/deleteconsoles/{console}', [ConsoleController::class, 'destroy']);

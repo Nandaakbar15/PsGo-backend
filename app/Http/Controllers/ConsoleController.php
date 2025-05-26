@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Console;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+
 
 class ConsoleController extends Controller
 {
@@ -71,7 +73,7 @@ class ConsoleController extends Controller
             'name'        => 'required|string|max:255',
             'description' => 'required|string',
             'hourly_rate' => 'required|numeric',
-            'is_active'   => 'required|boolean',
+            'is_active'   => 'required|in:1,0',
             'image'       => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
@@ -89,6 +91,8 @@ class ConsoleController extends Controller
         }
 
         $console->update($validateData);
+
+        Log::info($request->all());
 
         return response()->json([
             'statusCode' => 200,
