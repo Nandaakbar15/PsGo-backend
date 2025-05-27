@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccesoriesController;
 use App\Http\Controllers\ConsoleController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\LoginController;
@@ -23,6 +24,13 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/addconsoles', [ConsoleController::class, 'store']);
         Route::put('/updateconsoles/{console}', [ConsoleController::class, 'update']);
         Route::delete('/deleteconsoles/{console}', [ConsoleController::class, 'destroy']);
+
+        // endpoint CRUD Accesories
+        Route::get('/getallaccesories', [AccesoriesController::class, 'index']);
+        Route::get('/getallaccesories/{accesories}', [AccesoriesController::class, 'show']);
+        Route::post('/addaccesories', [AccesoriesController::class, 'store']);
+        Route::put('/updateaccesories/{accesories}', [AccesoriesController::class, 'update']);
+        Route::delete('/deleteaccesories/{accesories}', [AccesoriesController::class, 'destroy']);
     });
 
     // endpoint customer
