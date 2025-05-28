@@ -4,5 +4,5 @@ Sebuah Rest API atau backend dari website PS Go yang merupakan website penyedia 
 Teknologi yang dipakai adalah Laravel
 
 ### List Endpoint
-- Admin : List User yang terlogin, CRUD Konsol, CRUD Aksesories dan List Transaksi yang masuk
+- Admin : List User yang terlogin dan delete user, CRUD Konsol, CRUD Aksesories dan List Transaksi yang masuk
 - Customer : List Konsol, Detail Konsol, Aksesoris dan Booking Konsol

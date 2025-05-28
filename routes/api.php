@@ -15,8 +15,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::prefix('admin')->middleware('admin')->group(function () {
 
-        // endpoint untuk melihat semua user
+        // endpoint untuk melihat semua user dan delete user
         Route::get("/getallusers", [UserController::class, 'users']);
+        Route::delete("/deleteUser/{user}", [UserController::class, 'deleteUser']);
 
         // endpoint CRUD consoles
         Route::get('/getallconsoles', [ConsoleController::class, 'index']);
