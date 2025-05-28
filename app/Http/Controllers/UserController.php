@@ -17,7 +17,7 @@ class UserController extends Controller
         ], 200);
     }
 
-    public function deleteUsers(User $user)
+    public function deleteUser(User $user)
     {
         $user->delete();
 
