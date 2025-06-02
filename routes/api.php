@@ -36,8 +36,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // endpoint customer
     Route::prefix('customer')->group(function () {
-        Route::get('/listconsoles', [CustomerController::class, 'listconsole']);
-        Route::get('/detailConsoles/{id_konsol}', [CustomerController::class, 'detailConsole']);
+        Route::get('/products', [CustomerController::class, 'listconsole']);
+        Route::get('/detailProducts/{id_konsol}', [CustomerController::class, 'detailConsole']);
+        Route::get('/aksesoris', [CustomerController::class, 'accessories']);
+        Route::get('/detailAksesories/{id_aksesoris}', [CustomerController::class, 'detailAccesories']);
     });
 });
 
