@@ -12,7 +12,7 @@ class AccesoriesController extends Controller
      */
     public function index()
     {
-        $accesories = Accesories::all();
+        $accesories = Accesories::paginate(5);
 
         return response()->json([
             'statusCode' => 200,

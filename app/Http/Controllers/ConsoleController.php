@@ -14,7 +14,7 @@ class ConsoleController extends Controller
      */
     public function index()
     {
-        $console = Console::all();
+        $console = Console::paginate(5);
 
         return response()->json([
             'statusCode' => 200,
