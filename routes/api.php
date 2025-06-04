@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccesoriesController;
+use App\Http\Controllers\BookingsController;
 use App\Http\Controllers\ConsoleController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\LoginController;
@@ -32,6 +33,10 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/addaccesories', [AccesoriesController::class, 'store']);
         Route::put('/updateaccesories/{accesories}', [AccesoriesController::class, 'update']);
         Route::delete('/deleteaccesories/{accesories}', [AccesoriesController::class, 'destroy']);
+
+        // endpoint Read and Delete booking
+        Route::get('/getallbooking', [BookingsController::class, 'index']);
+        Route::delete('/deleteBooking/{bookings}', [BookingsController::class, 'destroy']);
     });
 
     // endpoint customer
@@ -40,12 +45,15 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/detailProducts/{id_konsol}', [CustomerController::class, 'detailConsole']);
         Route::get('/aksesoris', [CustomerController::class, 'accessories']);
         Route::get('/detailAksesories/{id_aksesoris}', [CustomerController::class, 'detailAccesories']);
+        Route::post('/booking', [CustomerController::class, 'bookingPlaystation']);
+        Route::get('/getBooking', [CustomerController::class, 'getBooking']);
+        Route::delete('/cancel-booking/{$id}', [CustomerController::class, 'cancelBooking']);
     });
 });
 
 // endpoint login dan register
 Route::post('/register', [RegisterController::class, 'register']);
 Route::post('/login', [LoginController::class, 'login']);
-Route::post('/logout', [LoginController::class, 'logout']);
+Route::middleware('auth:sanctum')->post('/logout', [LoginController::class, 'logout']);
 
 

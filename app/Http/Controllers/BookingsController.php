@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Bookings;
 use Illuminate\Http\Request;
-use App\Models\Console;
 
 class BookingsController extends Controller
 {
@@ -13,47 +12,11 @@ class BookingsController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Bookings $bookings)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Bookings $bookings)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Bookings $bookings)
-    {
-        //
+        $booking = Bookings::paginate(5);
+        return response()->json([
+            'statusCode' => 200,
+            'data' => $booking
+        ], 200);
     }
 
     /**
@@ -61,6 +24,11 @@ class BookingsController extends Controller
      */
     public function destroy(Bookings $bookings)
     {
-        //
+        $bookings->delete();
+
+        return response()->json([
+            'statusCode' => 201,
+            'message' =>  'Data Booking berhasil di hapus!'
+        ], 201);
     }
 }
