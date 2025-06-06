@@ -5,6 +5,7 @@ use App\Http\Controllers\BookingsController;
 use App\Http\Controllers\ConsoleController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PesananController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -37,6 +38,9 @@ Route::middleware('auth:sanctum')->group(function () {
         // endpoint Read and Delete booking
         Route::get('/getallbooking', [BookingsController::class, 'index']);
         Route::delete('/deleteBooking/{bookings}', [BookingsController::class, 'destroy']);
+
+        // endpoint untuk melihat data transaksi yang masuk dari customer
+        Route::get('/getallorders', [PesananController::class, 'index']);
     });
 
     // endpoint customer
@@ -47,7 +51,9 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/detailAksesories/{id_aksesoris}', [CustomerController::class, 'detailAccesories']);
         Route::post('/booking', [CustomerController::class, 'bookingPlaystation']);
         Route::get('/getBooking', [CustomerController::class, 'getBooking']);
-        Route::delete('/cancel-booking/{$id}', [CustomerController::class, 'cancelBooking']);
+        Route::delete('/cancel-booking/{id}', [CustomerController::class, 'cancelBooking']);
+        Route::post('/order', [PesananController::class, 'store']);
+        Route::get('/listOrder', [CustomerController::class, 'getOrder']);
     });
 });
 

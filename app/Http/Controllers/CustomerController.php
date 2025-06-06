@@ -8,6 +8,7 @@ use App\Models\Accesories;
 use App\Models\Bookings;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Pesanan;
 
 class CustomerController extends Controller
 {
@@ -130,5 +131,27 @@ class CustomerController extends Controller
             'statusCode' => 200,
             'message' => 'Booking berhasil dibatalkan.'
         ]);
+    }
+
+    public function getOrder(Request $request)
+    {
+        $userId = $request->user()->id;
+
+        $pesanan = Pesanan::with('pesanan')
+                   ->where('user_id', $userId)
+                   ->orderBy('created_at', 'desc')
+                   ->get();
+
+        if(!$pesanan) {
+            return response()->json([
+                'statusCode' => 400,
+                'message' => 'Pesanan tidak ditemukan!'
+            ], 400);
+        }
+
+        return response()->json([
+            'statusCode' => 200,
+            'data' => $pesanan
+        ], 200);
     }
 }
